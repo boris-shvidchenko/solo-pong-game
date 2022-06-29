@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+#gameArea {
+  position: relative;
+  border: 2px solid;
+  border-bottom-color: red;
+  width: 600px;
+  height: 750px;
+  margin: 75px auto 0;
+}
+#gameArea #score {
+  border: 1px solid darkslategray;
+  width: 100px;
+  height: 50px;
+  margin: -60px auto 0;
+}
+#gameArea #messageArea {
+  position: absolute;
+  top: 33%;
+  left: 25%;
+  border: 1px solid darkslategray;
+  width: 300px;
+  height: 150px;
+}
+#gameArea #messageArea p {
+  display: block;
+  position: relative;
+  top: 13px;
+  margin: 0 auto;
+  width: 250px;
+  text-align: center;
+}
+#gameArea #messageArea button {
+  position: relative;
+  top: 24px;
+  display: block;
+  margin: 0 auto;
+  height: 40px;
+  width: 200px;
+}
+#gameArea #leftWall {
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 2px;
+  height: 750px;
+}
+#gameArea #topWall {
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 600px;
+  height: 2px;
+}
+#gameArea #rightWall {
+  position: absolute;
+  top: -2px;
+  left: 596px;
+  width: 2px;
+  height: 750px;
+}
+#gameArea #gameOverWall {
+  position: absolute;
+  top: 745px;
+  left: -2px;
+  width: 600px;
+  height: 2px;
+}
+#gameArea #playerPad {
+  position: absolute;
+  top: 96%;
+  left: 250px;
+  background-color: black;
+  width: 100px;
+  height: 30px;
+}
+
+.messageAreaRemove {
+  display: none;
+}/*# sourceMappingURL=style.css.map */
