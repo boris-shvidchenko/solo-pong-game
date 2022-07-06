@@ -60,35 +60,27 @@ function ballMoves() {
         if (ball.ballY > -1) {
             ball.ballY -= ball.ballSpeed;
             ballElem.style.top = ball.ballY + "px"; 
-            if ((moveBallHor) && (ball.ballX > 0)) {      
-                ball.ballX -= ball.ballSpeed;
-                ballElem.style.left = ball.ballX + "px";
-            } else if ((moveBallHor) && (ball.ballX = 1)) {
-                moveBallHor = false;
-            } else if ((!moveBallHor) && (ball.ballX < 580 )) {
-                ball.ballX += ball.ballSpeed;
-                ballElem.style.left = ball.ballX + "px";
-            } else if ((!moveBallHor) && (ball.ballX = 575)) {
-                moveBallHor = true;
-            }
+            ballHitWall();
         } else {
             moveBallVert = false;
         }
     } else {                    
-        if (ballHit(playerPad,ballElem)) {          // ball touches player pad
+        if (ballHitPad(playerPad,ballElem)) {          // ball touches player pad
             scoreText.innerText = ++gameScore;
+            if (parseInt(scoreText.innerText) % 20 == 0) {ball.ballSpeed += 1;} // increase ball speed every 20 rounds 
             moveBallVert = true;
         }         
-        else if (ball.ballY > 725) {                // ball touches floor
+        else if (ball.ballY > 725) {                   // ball touches floor
             endGame();
-        } else {                                    // ball moves down
+        } else {                                       // ball moves down
             ball.ballY += ball.ballSpeed;
             ballElem.style.top = ball.ballY + "px"; 
+            ballHitWall();
         }      
     }
 }
 
-function ballHit(a,b) {
+function ballHitPad(a,b) {
     let playerPadDimension = a.getBoundingClientRect();
     let ballElemDimension = b.getBoundingClientRect();
     return !(
@@ -97,6 +89,20 @@ function ballHit(a,b) {
         (playerPadDimension.right < ballElemDimension.left) ||
         (playerPadDimension.left > ballElemDimension.right)
     );
+}
+
+function ballHitWall() {
+    if ((moveBallHor) && (ball.ballX > 0)) {      
+        ball.ballX -= ball.ballSpeed;
+        ballElem.style.left = ball.ballX + "px";
+    } else if ((moveBallHor) && (ball.ballX = 1)) {
+        moveBallHor = false;
+    } else if ((!moveBallHor) && (ball.ballX < 580 )) {
+        ball.ballX += ball.ballSpeed;
+        ballElem.style.left = ball.ballX + "px";
+    } else if ((!moveBallHor) && (ball.ballX = 575)) {
+        moveBallHor = true;
+    }
 }
 
 function pressOn(e) {
@@ -112,7 +118,7 @@ function pressOff(e) {
 function endGame() {
     player.start = false;
     messageArea.removeAttribute("class", "remove"); // add message area
-    gameInfo.innerText = `You lost! You scored ${gameScore} points.`;
+    gameInfo.innerHTML = `You lost! <br> Your score: ${gameScore}`;
     startGameButton.style.display = "none";
     setTimeout(() => {          // after 3 seconds, reload game/page
         location.reload()
