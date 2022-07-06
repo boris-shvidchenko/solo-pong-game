@@ -22,11 +22,12 @@ let player = {
 
 let ball = {
     ballSpeed: 4,
-    ballX: 716,
+    ballX: 290,
     ballY: 696,
 };
 
-let moveBall = true;
+let moveBallVert = true;
+let moveBallHor = true;
 let gameScore = 0;
 
 // Event Listeners
@@ -36,15 +37,10 @@ document.addEventListener("keyup", pressOff);
 
 // Functions
 function startGame() {
-    console.log("game started");
     messageArea.setAttribute("class", "remove"); // remove message area
-    console.log("remove message area");
     score.removeAttribute("class", "remove");    // add score area
-    console.log("score removed");
     player.start = true;
-    console.log(player.start);
     player.score = 0;
-    console.log(player.score);
     window.requestAnimationFrame(playGame);
     playGame();
 }
@@ -60,21 +56,32 @@ function playGame() {
 }
 
 function ballMoves() {
-    if (moveBall) {
+    if (moveBallVert) {                                 // ball moves up
         if (ball.ballY > -1) {
             ball.ballY -= ball.ballSpeed;
             ballElem.style.top = ball.ballY + "px"; 
+            if ((moveBallHor) && (ball.ballX > 0)) {      
+                ball.ballX -= ball.ballSpeed;
+                ballElem.style.left = ball.ballX + "px";
+            } else if ((moveBallHor) && (ball.ballX = 1)) {
+                moveBallHor = false;
+            } else if ((!moveBallHor) && (ball.ballX < 580 )) {
+                ball.ballX += ball.ballSpeed;
+                ballElem.style.left = ball.ballX + "px";
+            } else if ((!moveBallHor) && (ball.ballX = 575)) {
+                moveBallHor = true;
+            }
         } else {
-            moveBall = false;
+            moveBallVert = false;
         }
-    } else {
-        if (ballHit(playerPad,ballElem)) {
+    } else {                    
+        if (ballHit(playerPad,ballElem)) {          // ball touches player pad
             scoreText.innerText = ++gameScore;
-            moveBall = true;
+            moveBallVert = true;
         }         
-        else if (ball.ballY > 725) {
+        else if (ball.ballY > 725) {                // ball touches floor
             endGame();
-        } else {
+        } else {                                    // ball moves down
             ball.ballY += ball.ballSpeed;
             ballElem.style.top = ball.ballY + "px"; 
         }      
