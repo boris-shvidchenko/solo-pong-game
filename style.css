@@ -67,7 +67,7 @@
   width: 2px;
   height: 750px;
 }
-#gameArea #gameOverWall {
+#gameArea #floor {
   position: absolute;
   top: 745px;
   left: -2px;
