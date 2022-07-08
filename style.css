@@ -1,97 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: "Roboto", sans-serif;
 }
 
-#gameArea {
+body {
+  background-color: #131414;
+}
+body #gameArea {
   position: relative;
+  background-color: #313638;
   border: 2px solid;
-  border-bottom-color: red;
+  border-color: #131414 #131414 #f18f3f;
   width: 600px;
   height: 750px;
   margin: 75px auto 0;
 }
-#gameArea #score {
+body #gameArea #score {
   width: 100px;
   height: 50px;
   margin: -60px auto 0;
 }
-#gameArea #score p {
+body #gameArea #score p {
   text-align: center;
+  color: #f5f5f5;
   padding-top: 10px;
-  font-size: 1.5rem;
+  font-size: 2em;
 }
-#gameArea #messageArea {
+body #gameArea #messageArea {
   position: absolute;
-  top: 33%;
+  top: 25%;
   left: 25%;
-  border: 1px solid darkslategray;
   width: 300px;
   height: 150px;
 }
-#gameArea #messageArea p {
+body #gameArea #messageArea #title {
   display: block;
   position: relative;
   top: 13px;
-  margin: 0 auto;
-  width: 250px;
+  color: #e6672c;
+  text-shadow: 0 0 3px #f18f3f;
+  font-size: 3em;
+  font-weight: bolder;
+  margin: 0 auto -0.2em;
+  width: 300px;
+  text-align: center;
+  letter-spacing: 2px;
+}
+body #gameArea #messageArea #gameInfo {
+  display: block;
+  position: relative;
+  top: 13px;
+  color: #f5f5f5;
+  font-size: 1.3em;
+  line-height: 1.3em;
+  margin: 0 auto 1em;
+  width: 300px;
   text-align: center;
 }
-#gameArea #messageArea button {
+body #gameArea #messageArea button {
   position: relative;
   top: 24px;
   display: block;
   margin: 0 auto;
   height: 40px;
   width: 200px;
+  border: 0.1em solid #f18f3f;
+  background-color: transparent;
+  color: #f18f3f;
+  font-size: 1em;
+  font-weight: bold;
+  letter-spacing: 2px;
+  transition: 0.1s;
 }
-#gameArea #leftWall {
+body #gameArea #messageArea button:hover {
+  color: #e6672c;
+  border-color: #e6672c;
+  box-shadow: 0 0 10px #e6672c;
+  transition: 0.1s;
+}
+body #gameArea #leftWall {
   position: absolute;
   top: -2px;
   left: -2px;
   width: 2px;
   height: 750px;
 }
-#gameArea #topWall {
+body #gameArea #topWall {
   position: absolute;
   top: 0;
   left: -2px;
   width: 600px;
   height: 2px;
 }
-#gameArea #rightWall {
+body #gameArea #rightWall {
   position: absolute;
   top: -2px;
   left: 596px;
   width: 2px;
   height: 750px;
 }
-#gameArea #floor {
+body #gameArea #floor {
   position: absolute;
   top: 745px;
   left: -2px;
   width: 600px;
   height: 2px;
+  box-shadow: 0 0 20px #e64225;
 }
-#gameArea #ball {
+body #gameArea #ball {
   position: absolute;
   top: 711px;
   left: 290px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
-  background-color: green;
+  background-color: #f5f5f5;
 }
-#gameArea #playerPad {
+body #gameArea #playerPad {
   position: absolute;
   top: 731px;
   left: 250px;
-  background-color: black;
+  background-color: #e6672c;
   width: 100px;
   height: 15px;
+  -webkit-animation: glow 2s infinite alternate;
+          animation: glow 2s infinite alternate;
+}
+body .remove {
+  display: none;
 }
 
-.remove {
-  display: none;
+@-webkit-keyframes glow {
+  0% {
+    box-shadow: 0 0 10px #e6672c;
+  }
+  100% {
+    box-shadow: 0 0 20px #f18f3f;
+  }
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 10px #e6672c;
+  }
+  100% {
+    box-shadow: 0 0 20px #f18f3f;
+  }
 }/*# sourceMappingURL=style.css.map */
