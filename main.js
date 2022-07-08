@@ -1,6 +1,7 @@
 // Stored HTML elements
 const gameArea = document.getElementById("gameArea");
 const startGameButton = document.getElementById("startGameButton");
+const gameTitle =document.getElementById("title");
 const messageArea = document.getElementById("messageArea");
 const gameInfo = document.getElementById("gameInfo");
 const playerPad = document.getElementById("playerPad");
@@ -119,10 +120,12 @@ function endGame() {
     player.start = false;
     messageArea.removeAttribute("class", "remove"); // add message area
     gameInfo.innerHTML = `You lost! <br> Your score: ${gameScore}`;
+    gameInfo.style.fontSize = "2em";
     startGameButton.style.display = "none";
+    gameTitle.style.display = "none";
     setTimeout(() => {          // after 3 seconds, reload game/page
         location.reload()
-    }, 3000);
+    }, 3500);
 }
 
 
